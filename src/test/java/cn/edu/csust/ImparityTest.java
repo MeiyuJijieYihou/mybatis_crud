@@ -1,6 +1,8 @@
 package cn.edu.csust;
 
+import cn.edu.csust.jt.dao.IImparityUserMapper;
 import cn.edu.csust.jt.dao.IUserMapper;
+import cn.edu.csust.jt.entity.ImparityUser;
 import cn.edu.csust.jt.entity.QueryVo;
 import cn.edu.csust.jt.entity.User;
 import org.apache.ibatis.io.Resources;
@@ -15,12 +17,12 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 
-public class Test {
+public class ImparityTest {
 
 
     InputStream in = null;
     SqlSession sqlSession = null;
-    IUserMapper userMapper = null;
+    IImparityUserMapper imparityUserMapper = null;
 
 
     @Before
@@ -35,7 +37,7 @@ public class Test {
         sqlSession = factory.openSession();
 
         // 4、获取Dao代理对象
-        userMapper = sqlSession.getMapper(IUserMapper.class);
+        imparityUserMapper = sqlSession.getMapper(IImparityUserMapper.class);
     }
 
 
@@ -55,8 +57,8 @@ public class Test {
     public void testFindAll() {
 
         // 5、执行查询所有的方法
-        List<User> users = userMapper.findAll();
-        for (User user : users) {
+        List<ImparityUser> users = imparityUserMapper.findAll();
+        for (ImparityUser user : users) {
             System.out.println(user);
         }
     }
@@ -64,13 +66,13 @@ public class Test {
 
     @org.junit.Test
     public void testSaveUser() {
-        User user = new User();
-        user.setUser_name("test_save");
-        user.setBirthday(new Date());
-        user.setAge(2);
-        user.setPhone("32424");
+        ImparityUser user = new ImparityUser();
+        user.setUserName("test_save");
+        user.setUserBirthday(new Date());
+        user.setUserAge(2);
+        user.setUserPhone("32424");
         System.out.println(user);
-        userMapper.saveUser(user);
+        imparityUserMapper.saveUser(user);
         System.out.println(user);
 
     }
@@ -78,25 +80,25 @@ public class Test {
 
     @org.junit.Test
     public void testUpdate() {
-        User user = new User();
-        user.setId(5);
-        user.setUser_name("test_update");
-        user.setBirthday(new Date());
-        user.setAge(12);
-        user.setPhone("232432sa");
-        userMapper.updateUser(user);
+        ImparityUser user = new ImparityUser();
+        user.setUserId(5);
+        user.setUserName("test_save");
+        user.setUserBirthday(new Date());
+        user.setUserAge(21);
+        user.setUserPhone("sds3434");
+        imparityUserMapper.updateUser(user);
     }
 
 
     @org.junit.Test
     public void testDelete() {
-        userMapper.deleteUser(5);
+        imparityUserMapper.deleteUser(5);
     }
 
 
     @org.junit.Test
     public void testFindById() {
-        User user = userMapper.findById(2);
+        ImparityUser user = imparityUserMapper.findById(2);
         System.out.println(user);
     }
 
@@ -104,13 +106,13 @@ public class Test {
     @org.junit.Test
     public void testFindByName() {
 //        List<User> user = imparityUserMapper.findByName("%三%");
-        List<User> user = userMapper.findByName("三");
+        List<ImparityUser> user = imparityUserMapper.findByName("三");
         System.out.println(user);
     }
 
     @org.junit.Test
     public void testFindTotal() {
-        Integer total = userMapper.findTotal();
+        Integer total = imparityUserMapper.findTotal();
         System.out.println(total);
     }
 
@@ -121,8 +123,8 @@ public class Test {
         user.setUser_name("%三%");
         queryVo.setUser(user);
 
-        List<User> users = userMapper.findByUserVo(queryVo);
-        for (User user1 : users) {
+        List<ImparityUser> users = imparityUserMapper.findByUserVo(queryVo);
+        for (ImparityUser user1 : users) {
             System.out.println(user1);
         }
     }

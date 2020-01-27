@@ -1,5 +1,6 @@
 package cn.edu.csust.jt.dao;
 
+import cn.edu.csust.jt.entity.ImparityUser;
 import cn.edu.csust.jt.entity.QueryVo;
 import cn.edu.csust.jt.entity.User;
 
@@ -17,19 +18,19 @@ public interface IImparityUserMapper {
      * 查询所有用户信息的操作
      * @return
      */
-    List<User> findAll();
+    List<ImparityUser> findAll();
 
 
     /**
      * 保存用户数据
      */
-    void saveUser(User user);
+    void saveUser(ImparityUser imparityUser);
 
     /**
      * 更新操作
-     * @param user
+     * @param imparityUser
      */
-    void updateUser(User user);
+    void updateUser(ImparityUser imparityUser);
 
 
     /**
@@ -43,7 +44,7 @@ public interface IImparityUserMapper {
      * 根据id查询用户信息
      * @param uid
      */
-    User findById(Integer uid);
+    ImparityUser findById(Integer uid);
 
 
     /**
@@ -51,7 +52,7 @@ public interface IImparityUserMapper {
      * @param name
      * @return
      */
-    List<User> findByName(String name);
+    List<ImparityUser> findByName(String name);
 
 
     /**
@@ -65,5 +66,5 @@ public interface IImparityUserMapper {
      * 通过Vo对象查询数据
      * @return
      */
-    List<User> findByUserVo(QueryVo queryVo);
+    List<ImparityUser> findByUserVo(QueryVo queryVo);
 }
