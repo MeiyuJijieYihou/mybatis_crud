@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 数据库配置   -->
     <environments default="mysql">
         <environment id="mysql">
             <transactionManager type="JDBC" />
@@ -14,6 +15,7 @@
         </environment>
     </environments>
 
+    <!-- mapper文件配置 -->
     <mappers>
         <mapper resource="mapper/IUserMapper.xml"/>
         <mapper resource="mapper/IImparityUserMapper.xml" />
