@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.csust.jt.dao.UserMapper">
+
+    <resultMap id="UserAccountMapper" type="cn.edu.csust.jt.entity.User">
+
+        <id property="id" column="id" />
+        <result property="user_name" column="user_name" />
+        <result property="birthday" column="birthday" />
+        <result property="age" column="age" />
+        <result property="phone" column="phone" />
+
+        <collection property="accounts" ofType="cn.edu.csust.jt.entity.Account">
+            <id property="id" column="id" />
+            <result property="uid" column="uid" />
+            <result property="money" column="money" />
+        </collection>
+
+
+    </resultMap>
+    <select id="selectAll" resultMap="UserAccountMapper">
+        select *
+            from user u left outer join account a
+            on u.id = a.uid;
+    </select>
+
+</mapper>

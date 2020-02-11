@@ -19,5 +19,7 @@
     <mappers>
         <mapper resource="mapper/IUserMapper.xml"/>
         <mapper resource="mapper/IImparityUserMapper.xml" />
+        <mapper resource="mapper/AccountMapper.xml" />
+        <mapper resource="mapper/UserMapper.xml" />
     </mappers>
 </configuration>

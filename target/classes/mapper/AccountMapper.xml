@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.csust.jt.dao.AccountMapper">
+
+    <resultMap id="accountUserMap" type="cn.edu.csust.jt.entity.Account">
+
+        <id property="id" column="aid" />
+        <result property="uid" column="uid" />
+        <result property="money" column="money" />
+
+        <!-- 一对一答关系映射， 配置User的内容 -->
+        <association property="user" javaType="cn.edu.csust.jt.entity.User">
+
+            <id property="id" column="uid" />
+            <result property="user_name" column="user_name" />
+            <result property="birthday" column="birthday" />
+            <result property="age" column="age" />
+            <result property="phone" column="phone" />
+
+        </association>
+
+    </resultMap>
+    <select id="selectAll" resultMap="accountUserMap">
+        select a.id as aid, a.money, u.id as uid, u.user_name, u.birthday, u.age, u.phone
+            from user u, account a
+            where u.id = a.uid;
+    </select>
+
+</mapper>
