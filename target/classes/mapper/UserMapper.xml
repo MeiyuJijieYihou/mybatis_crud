@@ -5,7 +5,6 @@
 <mapper namespace="cn.edu.csust.jt.dao.UserMapper">
 
     <resultMap id="UserAccountMapper" type="cn.edu.csust.jt.entity.User">
-
         <id property="id" column="id" />
         <result property="user_name" column="user_name" />
         <result property="birthday" column="birthday" />
@@ -17,13 +16,32 @@
             <result property="uid" column="uid" />
             <result property="money" column="money" />
         </collection>
-
-
     </resultMap>
+
+    <resultMap id="UserRoleMapper" type="cn.edu.csust.jt.entity.User">
+        <id property="id" column="uid" />
+        <result property="user_name" column="user_name" />
+        <result property="birthday" column="birthday" />
+        <result property="age" column="age" />
+        <result property="phone" column="phone" />
+
+        <collection property="roles" ofType="cn.edu.csust.jt.entity.Role">
+            <id property="id" column="rid" />
+            <result property="role_name" column="role_name" />
+        </collection>
+    </resultMap>
+
     <select id="selectAll" resultMap="UserAccountMapper">
         select *, a.id as aid
             from user u left outer join account a
             on u.id = a.uid;
+    </select>
+    <select id="selectAllUserRole" resultMap="UserRoleMapper">
+        select u.id as uid, u.user_name, u.birthday, u.age, u.phone, r.id as rid, r.role_name
+            from user u left outer join user_role ur
+            on u.id = ur.uid
+            left outer join role r
+            on ur.rid = r.id;
     </select>
 
 </mapper>

@@ -1,5 +1,6 @@
 package cn.edu.csust.jt.dao;
 
+import cn.edu.csust.jt.entity.Role;
 import cn.edu.csust.jt.entity.User;
 
 import java.io.Serializable;
@@ -13,4 +14,6 @@ import java.util.List;
  */
 public interface UserMapper {
     List<User> selectAll();
+
+    List<User> selectAllUserRole();
 }

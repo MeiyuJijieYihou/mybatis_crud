@@ -16,4 +16,6 @@ public class User implements Serializable {
     private String phone;
 
     private List<Account> accounts;
+
+    private List<Role> roles;
 }

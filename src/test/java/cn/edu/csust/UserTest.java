@@ -3,6 +3,7 @@ package cn.edu.csust;
 import cn.edu.csust.jt.dao.AccountMapper;
 import cn.edu.csust.jt.dao.UserMapper;
 import cn.edu.csust.jt.entity.Account;
+import cn.edu.csust.jt.entity.Role;
 import cn.edu.csust.jt.entity.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -66,4 +67,12 @@ public class UserTest {
         }
     }
 
+    @Test
+    public void findAllUserRole() {
+        List<User> users = userMapper.selectAllUserRole();
+
+        for (User user: users) {
+            System.out.println(user);
+        }
+    }
 }
