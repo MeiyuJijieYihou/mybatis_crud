@@ -13,7 +13,7 @@
         <result property="phone" column="phone" />
 
         <collection property="accounts" ofType="cn.edu.csust.jt.entity.Account">
-            <id property="id" column="id" />
+            <id property="id" column="aid" />
             <result property="uid" column="uid" />
             <result property="money" column="money" />
         </collection>
@@ -21,7 +21,7 @@
 
     </resultMap>
     <select id="selectAll" resultMap="UserAccountMapper">
-        select *
+        select *, a.id as aid
             from user u left outer join account a
             on u.id = a.uid;
     </select>

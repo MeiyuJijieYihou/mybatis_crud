@@ -21,5 +21,6 @@
         <mapper resource="mapper/IImparityUserMapper.xml" />
         <mapper resource="mapper/AccountMapper.xml" />
         <mapper resource="mapper/UserMapper.xml" />
+        <mapper resource="mapper/RoleMapper.xml" />
     </mappers>
 </configuration>

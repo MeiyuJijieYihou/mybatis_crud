@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.csust.jt.dao.RoleMapper">
+
+    <resultMap id="roleMap" type="cn.edu.csust.jt.entity.Role">
+        <id property="id" column="rid" />
+        <result property="role_name" column="role_name" />
+
+        <collection property="users" ofType="cn.edu.csust.jt.entity.User">
+            <id property="id" column="uid" />
+            <result property="user_name" column="user_name" />
+            <result property="birthday" column="birthday" />
+            <result property="age" column="age" />
+            <result property="phone" column="phone" />
+        </collection>
+
+
+    </resultMap>
+    <select id="selectAll" resultMap="roleMap">
+        select r.id as rid, r.role_name, u.id as uid, u.user_name, u.birthday, u.age, u.phone
+            from role r left outer join user_role ur
+            on r.id = ur.rid
+            left outer join user u
+            on ur.uid = u.id;
+    </select>
+
+</mapper>
