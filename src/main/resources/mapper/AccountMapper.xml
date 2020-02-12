@@ -5,7 +5,6 @@
 <mapper namespace="cn.edu.csust.jt.dao.AccountMapper">
 
     <resultMap id="accountUserMap" type="cn.edu.csust.jt.entity.Account">
-
         <id property="id" column="aid" />
         <result property="uid" column="uid" />
         <result property="money" column="money" />
@@ -18,14 +17,31 @@
             <result property="birthday" column="birthday" />
             <result property="age" column="age" />
             <result property="phone" column="phone" />
-
         </association>
-
     </resultMap>
+
+
+    <!--  懒加载配置  -->
+    <resultMap id="accountUserLazyMap" type="cn.edu.csust.jt.entity.Account">
+        <id property="id" column="id" />
+        <result property="uid" column="uid" />
+        <result property="money" column="money" />
+
+        <!-- 一对一答关系映射，懒加载，配置User的内容，findById惨遭column配置的ID -->
+        <association property="user" javaType="cn.edu.csust.jt.entity.User" fetchType="lazy" select="cn.edu.csust.jt.dao.IUserMapper.findById" column="uid" >
+        </association>
+    </resultMap>
+
     <select id="selectAll" resultMap="accountUserMap">
         select a.id as aid, a.money, u.id as uid, u.user_name, u.birthday, u.age, u.phone
             from user u, account a
             where u.id = a.uid;
     </select>
+
+    <select id="selectAllLazy" resultMap="accountUserLazyMap">
+        select id, money, uid
+            from account;
+    </select>
+
 
 </mapper>

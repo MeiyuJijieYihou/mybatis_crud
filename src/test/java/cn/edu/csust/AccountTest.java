@@ -65,4 +65,17 @@ public class AccountTest {
         }
     }
 
+    /**
+     * 懒加载测试
+     */
+    @Test
+    public void findAllLazy() {
+
+        List<Account> accounts = accountMapper.selectAllLazy();
+
+        for (Account account: accounts) {
+            System.out.println(account);
+        }
+    }
+
 }

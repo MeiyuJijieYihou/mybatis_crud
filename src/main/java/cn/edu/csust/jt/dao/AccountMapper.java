@@ -13,4 +13,6 @@ import java.util.List;
 public interface AccountMapper {
 
     List<Account> selectAll();
+
+    List<Account> selectAllLazy();
 }

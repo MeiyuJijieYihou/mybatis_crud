@@ -2,6 +2,13 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+    <settings>
+        <!-- 开启全局懒加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
     <!-- 数据库配置   -->
     <environments default="mysql">
         <environment id="mysql">
@@ -23,4 +30,5 @@
         <mapper resource="mapper/UserMapper.xml" />
         <mapper resource="mapper/RoleMapper.xml" />
     </mappers>
+
 </configuration>
