@@ -42,6 +42,11 @@
         select id, money, uid
             from account;
     </select>
+    <select id="selectByUid" parameterType="Long" resultType="cn.edu.csust.jt.entity.Account">
+        select *
+            from account
+            where uid = #{uid}
+    </select>
 
 
 </mapper>

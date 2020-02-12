@@ -76,4 +76,15 @@ public class UserTest {
         }
     }
 
+
+    /**
+     * 一对多懒加载测试
+     */
+    @Test
+    public void findAllLazy() {
+        List<User> users = userMapper.selectAllLazy();
+        for (User user: users) {
+            System.out.println(user);
+        }
+    }
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.csust.jt.dao.UserMapper">
 
-    <resultMap id="UserAccountMapper" type="cn.edu.csust.jt.entity.User">
+    <resultMap id="UserAccountMap" type="cn.edu.csust.jt.entity.User">
         <id property="id" column="id" />
         <result property="user_name" column="user_name" />
         <result property="birthday" column="birthday" />
@@ -18,7 +18,7 @@
         </collection>
     </resultMap>
 
-    <resultMap id="UserRoleMapper" type="cn.edu.csust.jt.entity.User">
+    <resultMap id="UserRoleMap" type="cn.edu.csust.jt.entity.User">
         <id property="id" column="uid" />
         <result property="user_name" column="user_name" />
         <result property="birthday" column="birthday" />
@@ -31,17 +31,33 @@
         </collection>
     </resultMap>
 
-    <select id="selectAll" resultMap="UserAccountMapper">
+
+    <resultMap id="UserAccountLazyMap" type="cn.edu.csust.jt.entity.User">
+        <id property="id" column="id" />
+        <result property="user_name" column="user_name" />
+        <result property="birthday" column="birthday" />
+        <result property="age" column="age" />
+        <result property="phone" column="phone" />
+
+        <collection property="accounts" ofType="cn.edu.csust.jt.entity.Account" fetchType="lazy" column="id" select="cn.edu.csust.jt.dao.AccountMapper.selectByUid">
+        </collection>
+    </resultMap>
+
+    <select id="selectAll" resultMap="UserAccountMap">
         select *, a.id as aid
             from user u left outer join account a
             on u.id = a.uid;
     </select>
-    <select id="selectAllUserRole" resultMap="UserRoleMapper">
+    <select id="selectAllUserRole" resultMap="UserRoleMap">
         select u.id as uid, u.user_name, u.birthday, u.age, u.phone, r.id as rid, r.role_name
             from user u left outer join user_role ur
             on u.id = ur.uid
             left outer join role r
             on ur.rid = r.id;
+    </select>
+    <select id="selectAllLazy" resultMap="UserAccountLazyMap">
+        select *
+        from user;
     </select>
 
 </mapper>

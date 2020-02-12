@@ -16,4 +16,6 @@ public interface UserMapper {
     List<User> selectAll();
 
     List<User> selectAllUserRole();
+
+    List<User> selectAllLazy();
 }

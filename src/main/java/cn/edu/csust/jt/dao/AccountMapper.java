@@ -1,6 +1,7 @@
 package cn.edu.csust.jt.dao;
 
 import cn.edu.csust.jt.entity.Account;
+import sun.management.counter.AbstractCounter;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface AccountMapper {
     List<Account> selectAll();
 
     List<Account> selectAllLazy();
+
+    List<Account> selectByUid(Long uid);
 }
